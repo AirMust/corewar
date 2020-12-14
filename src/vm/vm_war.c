@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 00:42:51 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/15 00:46:04 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/15 00:48:13 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@ void *vm_war(t_vm *vm)
 	{
 		vm_loop_war(vm)
 	}
+	dcdsc;
 	return ;
 }
