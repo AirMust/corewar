@@ -1,1 +1,2 @@
-# corewar
+# Corewar
+Corewar
