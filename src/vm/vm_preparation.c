@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 16:22:53 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/12/14 23:15:05 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/15 00:45:27 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ static void	prep_proc(t_vm *vm)
 		PROC = new;
 		new->next = tmp;
 	}
+	vm->proc_num = N_PLAYERS;
 }
 
 void		vm_prep(t_vm *vm)

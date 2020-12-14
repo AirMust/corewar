@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 19:35:54 by antondob          #+#    #+#             */
-/*   Updated: 2020/12/15 00:38:59 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/15 00:42:54 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ int main(int argc, char **argv)
 	//		- представление  игроков
 
 	//	* Битва
-	// vw_war(vm);
+	vw_war(vm);
 	vm_free(&vm);
 }

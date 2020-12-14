@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/12/14 23:36:16 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/15 00:44:50 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef	struct	s_vm
 	int			dump; 			//флаг dump. Если флаг установлен, то dump = числу идущему после флага. Дефолт = -1
 	int			visualizer;
 	int			players_num;	//количество игроков
+	id_t		proc_num;
 }				t_vm;
 
 /*
