@@ -6,7 +6,7 @@
 #    By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/25 14:04:51 by slynell           #+#    #+#              #
-#    Updated: 2020/12/14 23:33:07 by airat_must       ###   ########.fr        #
+#    Updated: 2020/12/15 00:31:30 by airat_must       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,20 +34,30 @@ LIBFT = $(addprefix $(LDIR)/,libft.a)
 SDIR = src
 ODIR = obj
 
-SRCS = vm_main.c
-SRCS += vm_bytes.c
-SRCS += vm_create.c
-SRCS += vm_error.c
-SRCS += vm_free.c
-SRCS += vm_preparation.c
-SRCS += vm_preparation_help.c
-SRCS += vm_validation.c
-SRCS += vm_validation_help.c
+SRCS = corewar.c
 
 
 SOURCES = $(addprefix $(SDIR)/,$(SRCS))
 OBJECTS = $(addprefix $(ODIR)/,$(SRCS:.c=.o))
 
+# /*
+# ** ====================== SOURCE VM ==========================
+# */
+SDIR_VM = src/vm
+ODIR_VM = obj/vm
+
+SRC_VM = vm_create.c
+SRC_VM += vm_bytes.c
+SRC_VM += vm_error.c
+SRC_VM += vm_free.c
+SRC_VM += vm_preparation.c
+SRC_VM += vm_preparation_help.c
+SRC_VM += vm_validation.c
+SRC_VM += vm_validation_help.c
+
+
+SOURCES_VM = $(addprefix $(SDIR_VM)/,$(SRC_VM))
+OBJECTS_VM = $(addprefix $(ODIR_VM)/,$(SRC_VM:.c=.o))
 
 .PHONY: clean fclean all re $(LIBFT)
 
@@ -55,8 +65,8 @@ all : $(NAME) Makefile
 	@2> tmp.log
 	@@echo "Project $(NAME) build successfully \c" >> tmp.log
 
-$(NAME) : $(LIBFT) $(OBJECTS) $(INCLUDES)
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJECTS) -I $(IDIR) $(LIBFT)
+$(NAME) : $(LIBFT) $(OBJECTS) $(OBJECTS_VM) $(INCLUDES)
+	@$(CC) $(FLAGS) -o $(NAME) $(OBJECTS)  $(OBJECTS_VM) -I $(IDIR) $(LIBFT)
 	@echo "\nProject $(NAME) build successfully \033[32m[OK]\033[0m\n"
 
 # /*
@@ -65,12 +75,22 @@ $(NAME) : $(LIBFT) $(OBJECTS) $(INCLUDES)
 $(LIBFT) : Makefile
 	@make -C $(LDIR) 2> tmp.log
 
+# /*
+# ** ====================== MAKE VM ==========================
+# */
+$(ODIR_VM)/%.o : $(SDIR_VM)/%.c $(INCLUDES)
+	@if [[ $< == src/vm/vm_create.c ]]; then \
+		echo "\n > Make \033[33mvmachine\033[0mfunctions:\c"; \
+	fi
+	@mkdir -p $(ODIR_VM) 2> tmp.log
+	@$(CC) $(FLAGS) -I $(IDIR) -c $< -o $@ 2> tmp.log
+	@echo "\033[32m.\033[0m\c"
 
 # /*
-# ** ====================== SOURCE LS MAIN  ==========================
+# ** ====================== SOURCE MAIN  ==========================
 # */
 $(ODIR)/%.o : $(SDIR)/%.c $(INCLUDES)
-	@if [[ $< == src/vm_main.c ]]; then \
+	@if [[ $< == src/corewar.c ]]; then \
 		echo "Make \033[33m$(NAME)\033[0m\tfunctions:\c"; \
 	fi
 	@mkdir -p $(ODIR) 2> tmp.log
