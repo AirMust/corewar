@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_create.c                                        :+:      :+:    :+:   */
+/*   op_live.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/30 20:00:13 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/12/15 00:49:17 by airat_must       ###   ########.fr       */
+/*   Created: 2020/12/19 02:17:37 by airat_must        #+#    #+#             */
+/*   Updated: 2020/12/19 02:54:48 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/vm.h"
+#include "../../../header/vm.h"
 
-t_vm	*vm_create(void)
+void	op_live(t_vm *vm, t_process *proc)
 {
-	t_vm	*vm;
+	int			player_id;
+	t_player	*player;
 
-	if (!(vm = ft_memalloc(sizeof(t_vm))))
-		vm_error(3);
-	if (!(STAGE = ft_memalloc(MEM_SIZE)))
-		vm_error(3);
-	if (!(PLAYER = ft_memalloc(sizeof(t_player) * MAX_PLAYERS)))
-		vm_error(3);
-	DUMP = -1;
-	return (vm);
+	proc->step += OP_CODE_LEN;
+	player_id =
+
 }

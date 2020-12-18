@@ -6,11 +6,11 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 20:27:47 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/12/15 00:49:40 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/19 02:40:07 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/vm.h"
+#include "../../../header/vm.h"
 
 char	**valid_filename(t_vm *vm, char **input, int *i, int *count)
 {

@@ -6,7 +6,7 @@
 #    By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/25 14:04:51 by slynell           #+#    #+#              #
-#    Updated: 2020/12/18 19:23:17 by airat_must       ###   ########.fr        #
+#    Updated: 2020/12/19 02:54:48 by airat_must       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,15 +46,8 @@ OBJECTS = $(addprefix $(ODIR)/,$(SRCS:.c=.o))
 SDIR_VM = src/vm
 ODIR_VM = obj/vm
 
-SRC_VM = vm_create.c
+SRC_VM = vm_war.c
 SRC_VM += vm_bytes.c
-SRC_VM += vm_error.c
-SRC_VM += vm_free.c
-SRC_VM += vm_preparation.c
-SRC_VM += vm_preparation_help.c
-SRC_VM += vm_validation.c
-SRC_VM += vm_validation_help.c
-SRC_VM += vm_war.c
 SRC_VM += vm_print.c
 SRC_VM += vm_op.c
 SRC_VM += vm_proc.c
@@ -66,14 +59,43 @@ SRC_VM += utils.c
 SOURCES_VM = $(addprefix $(SDIR_VM)/,$(SRC_VM))
 OBJECTS_VM = $(addprefix $(ODIR_VM)/,$(SRC_VM:.c=.o))
 
+# /*
+# ** ====================== SOURCE VM_INIT ==========================
+# */
+SDIR_VM_INIT = src/vm/vm_init
+ODIR_VM_INIT = obj/vm/vm_init
+
+SRC_VM_INIT = vm_create.c
+SRC_VM_INIT += vm_error.c
+SRC_VM_INIT += vm_free.c
+
+
+SOURCES_VM_INIT = $(addprefix $(SDIR_VM_INIT)/,$(SRC_VM_INIT))
+OBJECTS_VM_INIT = $(addprefix $(ODIR_VM_INIT)/,$(SRC_VM_INIT:.c=.o))
+
+# /*
+# ** ====================== SOURCE VM_PARSE ==========================
+# */
+SDIR_VM_PARSE = src/vm/vm_parse
+ODIR_VM_PARSE = obj/vm/vm_parse
+
+SRC_VM_PARSE = vm_preparation.c
+SRC_VM_PARSE += vm_preparation_help.c
+SRC_VM_PARSE += vm_validation.c
+SRC_VM_PARSE += vm_validation_help.c
+
+
+SOURCES_VM_PARSE = $(addprefix $(SDIR_VM_PARSE)/,$(SRC_VM_PARSE))
+OBJECTS_VM_PARSE = $(addprefix $(ODIR_VM_PARSE)/,$(SRC_VM_PARSE:.c=.o))
+
 .PHONY: clean fclean all re $(LIBFT)
 
 all : $(NAME) Makefile
 	@2> tmp.log
 	@@echo "Project $(NAME) build successfully \c" >> tmp.log
 
-$(NAME) : $(LIBFT) $(OBJECTS) $(OBJECTS_VM) $(INCLUDES)
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJECTS)  $(OBJECTS_VM) -I $(IDIR) $(LIBFT)
+$(NAME) : $(LIBFT) $(OBJECTS) $(OBJECTS_VM) $(OBJECTS_VM_INIT) $(OBJECTS_VM_PARSE) $(INCLUDES)
+	@$(CC) $(FLAGS) -o $(NAME) $(OBJECTS) $(OBJECTS_VM) $(OBJECTS_VM_INIT) $(OBJECTS_VM_PARSE) -I $(IDIR) $(LIBFT)
 	@echo "\nProject $(NAME) build successfully \033[32m[OK]\033[0m\n"
 
 # /*
@@ -83,18 +105,41 @@ $(LIBFT) : Makefile
 	@make -C $(LDIR) 2> tmp.log
 
 # /*
+# ** =================== MAKE VM_PARSE ========================
+# */
+$(ODIR_VM_PARSE)/%.o : $(SDIR_VM_PARSE)/%.c $(INCLUDES)
+	@if [[ $< == src/vm/vm_parse/vm_preparation.c ]]; then \
+		echo "\n > Make \033[33mvm parse\033[0mfunctions:\c"; \
+	fi
+	@mkdir -p $(ODIR_VM_PARSE) 2> tmp.log
+	@$(CC) $(FLAGS) -I $(IDIR) -c $< -o $@ 2> tmp.log
+	@echo "\033[32m.\033[0m\c"
+
+
+# /*
+# ** =================== MAKE VM_INIT ========================
+# */
+$(ODIR_VM_INIT)/%.o : $(SDIR_VM_INIT)/%.c $(INCLUDES)
+	@if [[ $< == src/vm/vm_init/vm_create.c ]]; then \
+		echo "\n > Make \033[33mvm init \033[0mfunctions:\c"; \
+	fi
+	@mkdir -p $(ODIR_VM_INIT) 2> tmp.log
+	@$(CC) $(FLAGS) -I $(IDIR) -c $< -o $@ 2> tmp.log
+	@echo "\033[32m.\033[0m\c"
+
+# /*
 # ** ====================== MAKE VM ==========================
 # */
 $(ODIR_VM)/%.o : $(SDIR_VM)/%.c $(INCLUDES)
-	@if [[ $< == src/vm/vm_create.c ]]; then \
-		echo "\n > Make \033[33mvmachine\033[0mfunctions:\c"; \
+	@if [[ $< == src/vm/vm_war.c ]]; then \
+		echo "\n > Make \033[33mvm\t\033[0mfunctions:\c"; \
 	fi
 	@mkdir -p $(ODIR_VM) 2> tmp.log
 	@$(CC) $(FLAGS) -I $(IDIR) -c $< -o $@ 2> tmp.log
 	@echo "\033[32m.\033[0m\c"
 
 # /*
-# ** ====================== SOURCE MAIN  ==========================
+# ** ====================== SOURCE MAIN  =======================
 # */
 $(ODIR)/%.o : $(SDIR)/%.c $(INCLUDES)
 	@if [[ $< == src/corewar.c ]]; then \

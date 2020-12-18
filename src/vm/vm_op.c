@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 16:37:02 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/18 19:53:50 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/19 02:54:48 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,16 @@ int		gap_op_args(t_process *proc, t_op *op)
 				op->t_dir_size : IND_SIZE);
 	}
 	return (step);
+}
+
+int		get_op_args(t_vm *vm, t_process *proc, int index_arg, int is_mod)
+{
+	t_op	*op;
+	int		value;
+	int		addr;
+
+	op = &g_op[proc->id_op - 1];
+	value = 0;
+	if (proc->type_args[index_arg - 1] & T_REG)
+		value =
 }
