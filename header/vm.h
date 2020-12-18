@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/12/18 19:24:16 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/18 20:12:05 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 #include "../libft/header/libft.h"
 #include "op.h"
-#include "op_fun.h"
 #include "vm_struct.h"
+#include "vm_op_fun.h"
 
 #include <fcntl.h>
 
