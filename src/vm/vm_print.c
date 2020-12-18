@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_create.c                                        :+:      :+:    :+:   */
+/*   vm_print.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/30 20:00:13 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/12/15 00:49:17 by airat_must       ###   ########.fr       */
+/*   Created: 2020/12/18 16:30:07 by airat_must        #+#    #+#             */
+/*   Updated: 2020/12/18 16:35:58 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/vm.h"
 
-t_vm	*vm_create(void)
+void vm_print_proc(t_process *proc)
 {
-	t_vm	*vm;
-
-	if (!(vm = ft_memalloc(sizeof(t_vm))))
-		vm_error(3);
-	if (!(STAGE = ft_memalloc(MEM_SIZE)))
-		vm_error(3);
-	if (!(PLAYER = ft_memalloc(sizeof(t_player) * MAX_PLAYERS)))
-		vm_error(3);
-	DUMP = -1;
-	return (vm);
+	ft_printf("\n ------ Метасведения каретки ------ \n");
+	ft_printf("Идентификатор\t\t\t| %d\n", proc->id);
+	ft_printf("Код операции\t\t\t| %d\n", proc->id_op);
+	ft_printf("Кол. циклов до OP\t\t| %d\n", proc->cycle_op);
+	ft_printf("Текущая позиция относительная\t| %d\n", proc->curr_position);
 }

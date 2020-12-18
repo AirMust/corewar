@@ -6,7 +6,7 @@
 #    By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/25 14:04:51 by slynell           #+#    #+#              #
-#    Updated: 2020/12/15 00:31:30 by airat_must       ###   ########.fr        #
+#    Updated: 2020/12/18 19:23:17 by airat_must       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,13 @@ SRC_VM += vm_preparation.c
 SRC_VM += vm_preparation_help.c
 SRC_VM += vm_validation.c
 SRC_VM += vm_validation_help.c
+SRC_VM += vm_war.c
+SRC_VM += vm_print.c
+SRC_VM += vm_op.c
+SRC_VM += vm_proc.c
+SRC_VM += vm_valid_args.c
+
+SRC_VM += utils.c
 
 
 SOURCES_VM = $(addprefix $(SDIR_VM)/,$(SRC_VM))

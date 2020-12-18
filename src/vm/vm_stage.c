@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_create.c                                        :+:      :+:    :+:   */
+/*   vm_stage.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/30 20:00:13 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/12/15 00:49:17 by airat_must       ###   ########.fr       */
+/*   Created: 2020/12/16 16:00:26 by airat_must        #+#    #+#             */
+/*   Updated: 2020/12/16 16:14:14 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/vm.h"
 
-t_vm	*vm_create(void)
+unsigned int vm_stage_get_byte(t_vm *vm, void *postion, int step)
 {
-	t_vm	*vm;
 
-	if (!(vm = ft_memalloc(sizeof(t_vm))))
-		vm_error(3);
-	if (!(STAGE = ft_memalloc(MEM_SIZE)))
-		vm_error(3);
-	if (!(PLAYER = ft_memalloc(sizeof(t_player) * MAX_PLAYERS)))
-		vm_error(3);
-	DUMP = -1;
-	return (vm);
 }

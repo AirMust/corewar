@@ -6,13 +6,13 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 16:22:53 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/12/15 00:45:27 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/18 16:20:09 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/vm.h"
+#include "../../header/vm.h"
 
-static void	numerate_players(t_vm *vm, int *index)
+static void numerate_players(t_vm *vm, int *index)
 {
 	int i;
 	int j;
@@ -21,7 +21,7 @@ static void	numerate_players(t_vm *vm, int *index)
 	while (++i < N_PLAYERS)
 	{
 		if (PLAYER[i].n_num)
-			continue ;
+			continue;
 		j = -1;
 		while (++j < N_PLAYERS && index[j])
 			;
@@ -30,7 +30,7 @@ static void	numerate_players(t_vm *vm, int *index)
 	}
 }
 
-static void	prep_players(t_vm *vm)
+static void prep_players(t_vm *vm)
 {
 	int *index;
 	int i;
@@ -51,7 +51,7 @@ static void	prep_players(t_vm *vm)
 	free(index);
 }
 
-static void	prep_stage(t_vm *vm)
+static void prep_stage(t_vm *vm)
 {
 	int delta;
 	int i;
@@ -60,23 +60,23 @@ static void	prep_stage(t_vm *vm)
 	i = -1;
 	while (++i < N_PLAYERS)
 		ft_memcpy(STAGE + delta * i,
-			PLAYER[i].exec_code, PLAYER[i].exec_size);
+				  PLAYER[i].exec_code, PLAYER[i].exec_size);
 }
 
-static void	prep_proc(t_vm *vm)
+static void prep_proc(t_vm *vm)
 {
-	t_process	*new;
-	t_process	*tmp;
-	int			i;
+	t_process *new;
+	t_process *tmp;
+	int i;
 
-	i = 0;
+	i = -1;
 	while (++i < N_PLAYERS)
 	{
 		if (!(new = ft_memalloc(sizeof(t_process))))
 			vm_error(3);
 		new->id = i;
-		new->curr_position = STAGE +
-			MEM_SIZE / N_PLAYERS * (i - 1);
+		new->curr_position =
+			MEM_SIZE / N_PLAYERS *(i);
 		tmp = PROC;
 		PROC = new;
 		new->next = tmp;
@@ -84,7 +84,7 @@ static void	prep_proc(t_vm *vm)
 	vm->proc_num = N_PLAYERS;
 }
 
-void		vm_prep(t_vm *vm)
+void vm_prep(t_vm *vm)
 {
 	prep_players(vm);
 	prep_stage(vm);

@@ -1,0 +1,11 @@
+{
+	"files.associations": {
+		"functional": "cpp",
+		"iterator": "cpp",
+		"vm.h": "c",
+		"vm_struct.h": "c",
+		"op_fun.h": "c",
+		"op.h": "c",
+		"__locale": "c"
+	}
+}

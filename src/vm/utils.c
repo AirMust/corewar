@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_create.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/30 20:00:13 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/12/15 00:49:17 by airat_must       ###   ########.fr       */
+/*   Created: 2020/12/16 15:12:38 by airat_must        #+#    #+#             */
+/*   Updated: 2020/12/18 17:01:16 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/vm.h"
 
-t_vm	*vm_create(void)
+int		mod_position(int position)
 {
-	t_vm	*vm;
-
-	if (!(vm = ft_memalloc(sizeof(t_vm))))
-		vm_error(3);
-	if (!(STAGE = ft_memalloc(MEM_SIZE)))
-		vm_error(3);
-	if (!(PLAYER = ft_memalloc(sizeof(t_player) * MAX_PLAYERS)))
-		vm_error(3);
-	DUMP = -1;
-	return (vm);
+	position %= MEM_SIZE;
+	position += (position < 0) ? MEM_SIZE : 0;
+	return (position);
 }
+
+// int		get_size_op(t_process *current, t_op *op)
+// {
+// 	int	i;
+// 	int	step;
+
+// 	i = -1;
+// 	step = OP_CODE_LEN + OP_IS_TYPE;
+// 	while(++i < g_op[OP_CODE - 1].args_num)
+// 	{
+// 		step += get_size_op_arg(current-> op)
+// 	}
+// }

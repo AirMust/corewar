@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   vm_preparation_help.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 16:22:53 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/12/10 01:15:48 by antondob         ###   ########.fr       */
+/*   Updated: 2020/12/15 00:49:33 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/vm.h"
+#include "../../header/vm.h"
 
 void	sort_players(t_vm *vm)
 {

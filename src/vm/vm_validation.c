@@ -6,11 +6,11 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 20:27:47 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/12/14 23:15:46 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/15 00:49:43 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/vm.h"
+#include "../../header/vm.h"
 
 static void	read_file(t_file *file, int fd)
 {

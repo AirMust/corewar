@@ -6,83 +6,35 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/12/15 00:44:50 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/18 19:24:16 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VM_H
-# define VM_H
+#define VM_H
 
-# define B_S		100
-# define STAGE		vm->stage
-# define PLAYER		vm->players
-# define PROC		vm->processes
-# define DUMP		vm->dump
-# define N_PLAYERS	vm->players_num
-# define VIS		vm->visualizer
+#define B_S 100
 
-# include "../libft/header/libft.h"
-# include "op.h"
-# include "op_fun.h"
-# include <fcntl.h>
+#include "../libft/header/libft.h"
+#include "op.h"
+#include "op_fun.h"
+#include "vm_struct.h"
 
-/*
-** list of players
-*/
+#include <fcntl.h>
 
-typedef struct			s_player
-{
-	char				*file;							// file name of the player
-	int					n_on;							// flag "n" on/off
-	int					n_num;							// number with the flag "n"
-	int					fd;								// file descriptor
-	size_t				exec_size; 						//	size of execution code from header
-	char				name[PROG_NAME_LENGTH + 1];		// name of the player form header
-	char				comment[COMMENT_LENGTH + 1];	// player comment
-	void				*exec_code;
-}						t_player;
+#define OP_CODE_LEN 1
+#define ARGS_CODE_LEN 1
+#define REG_LEN 1
 
-/*
-** list of processes
-*/
+#define MASK_R 0b11000000 // Aka 0xCO
+#define MASK_G 0b00110000 // Aka 0x30
+#define MASK_B 0b00001100 // Aka 0xC
+#define MASK_A 0b00000011 // Aka 0x3
 
-typedef struct			s_process
-{
-	int					id;
-	int					carry;
-	int					curr_op;
-	int					cycle_op;
-	int					cycle_live;
-	void				*curr_position;
-	size_t				step;
-	int					reg[REG_NUMBER];
-	struct s_process	*next;
-}						t_process;
-/*
-** main structure for virtual machine
-*/
-
-typedef	struct	s_vm
-{
-	void		*stage;			//арена
-	t_player	*players;		//игроки
-	t_process	*processes;		//процессы
-	int			dump; 			//флаг dump. Если флаг установлен, то dump = числу идущему после флага. Дефолт = -1
-	int			visualizer;
-	int			players_num;	//количество игроков
-	id_t		proc_num;
-}				t_vm;
-
-/*
-** structure for file
-*/
-
-typedef struct	s_file
-{
-	size_t		size;
-	char		*raw;
-}				t_file;
-
+static int g_type_args[3] = {
+	T_REG,
+	T_DIR,
+	T_IND};
 /*
 ** Virtual machine funcs
 */
@@ -91,21 +43,29 @@ typedef struct	s_file
 ** Memory
 */
 
-t_vm		*vm_create(void);
-void		vm_free(t_vm **vm);
-unsigned	reverse_bytes(unsigned num);
-
+t_vm *vm_create(void);
+void vm_free(t_vm **vm);
+unsigned reverse_bytes(unsigned num);
 /*
 ** Validation, preparation, presentation
 */
 
-void		vm_valid(t_vm *vm, char **input);
-char		**valid_flags(t_vm *vm, char **input, int *i, int *count);
-char		**valid_filename(t_vm *vm, char **input, int *j, int *count);
-void		vm_prep(t_vm *vm);
-void		prep_presentation(t_vm *vm);
-void		sort_players(t_vm *vm);
+void vm_valid(t_vm *vm, char **input);
+char **valid_flags(t_vm *vm, char **input, int *i, int *count);
+char **valid_filename(t_vm *vm, char **input, int *j, int *count);
+void vm_prep(t_vm *vm);
+void prep_presentation(t_vm *vm);
+void sort_players(t_vm *vm);
 
+unsigned int get_byte_int(t_vm *vm, int position, int size_reg);
+void vm_war(t_vm *vm);
+void get_op_code(t_vm *vm, t_process *proc);
+void vm_print_proc(t_process *proc);
+int mod_position(int position);
+void get_op_type_agrs(t_vm *vm, t_process *proc, t_op *op);
+int wm_valid_args(t_vm *vm, t_process *proc, t_op *op);
+int gap_op_args(t_process *proc, t_op *op);
+void proc_step(t_process *proc);
 /*
 ** Error management
 */
@@ -125,6 +85,6 @@ void		sort_players(t_vm *vm);
 ** 10 - execution code exceeds CHAMP_MAX_SIZE
 */
 
-void		vm_error(int error_code);
+void vm_error(int error_code);
 
 #endif

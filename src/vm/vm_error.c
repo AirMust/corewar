@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   vm_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antondob <antondob@student.42.fr>          +#+  +:+       +#+        */
+/*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 19:14:52 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/12/09 16:51:39 by antondob         ###   ########.fr       */
+/*   Updated: 2020/12/15 00:49:27 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/vm.h"
+#include "../../header/vm.h"
 
 char 		g_error[100][100]={
-		"ERROR: no error", 
+		"ERROR: no error",
 		"USAGE: ",
-		"ERROR: number of players exceeds MAX_PLAYERS", 
+		"ERROR: number of players exceeds MAX_PLAYERS",
 		"ERROR: not enough memory to allocate",
 		"ERROR: wrong file extension",
 		"ERROR: cannot open file",

@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 21:24:44 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/14 23:37:02 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/18 16:45:11 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,19 @@
 
 #include "vm.h"
 
+# define OP_CODE	op->code
+# define OP_N_ARG	op->code
+# define OP_IS_TYPE	op->is_type_args
+
+# define OP_N_FUN	16
+
 typedef struct	s_op
 {
 	char		*name;
 	uint8_t		code;
 	uint8_t		args_num;
-	uint8_t		args_types_code;
-	uint8_t		args_types[3];
+	int			is_type_args;
+	uint8_t		type_args[3];
 	uint8_t		modify_carry;
 	uint8_t		t_dir_size;
 	uint32_t	cycles;
@@ -37,8 +43,8 @@ static t_op		g_op[16] = {
 		.name = "live",
 		.code = 0x01,
 		.args_num = 1,
-		.args_types_code = 0,
-		.args_types = {T_DIR, 0, 0},
+		.is_type_args = 0,
+		.type_args = {T_DIR, 0, 0},
 		.modify_carry = 0,
 		.t_dir_size = 4,
 		.cycles = 10,
@@ -48,8 +54,8 @@ static t_op		g_op[16] = {
 		.name = "ld",
 		.code = 0x02,
 		.args_num = 2,
-		.args_types_code = 1,
-		.args_types = {T_DIR | T_IND, T_REG, 0},
+		.is_type_args = 1,
+		.type_args = {T_DIR | T_IND, T_REG, 0},
 		.modify_carry = 1,
 		.t_dir_size = 4,
 		.cycles = 5,
@@ -59,8 +65,8 @@ static t_op		g_op[16] = {
 		.name = "st",
 		.code = 0x03,
 		.args_num = 2,
-		.args_types_code = 1,
-		.args_types = {T_REG, T_REG | T_IND, 0},
+		.is_type_args = 1,
+		.type_args = {T_REG, T_REG | T_IND, 0},
 		.modify_carry = 0,
 		.t_dir_size = 4,
 		.cycles = 5,
@@ -70,8 +76,8 @@ static t_op		g_op[16] = {
 		.name = "add",
 		.code = 0x04,
 		.args_num = 3,
-		.args_types_code = 1,
-		.args_types = {T_REG, T_REG, T_REG},
+		.is_type_args = 1,
+		.type_args = {T_REG, T_REG, T_REG},
 		.modify_carry = 1,
 		.t_dir_size = 4,
 		.cycles = 10,
@@ -81,8 +87,8 @@ static t_op		g_op[16] = {
 		.name = "sub",
 		.code = 0x05,
 		.args_num = 3,
-		.args_types_code = 1,
-		.args_types = {T_REG, T_REG, T_REG},
+		.is_type_args = 1,
+		.type_args = {T_REG, T_REG, T_REG},
 		.modify_carry = 1,
 		.t_dir_size = 4,
 		.cycles = 10,
@@ -92,8 +98,8 @@ static t_op		g_op[16] = {
 		.name = "and",
 		.code = 0x06,
 		.args_num = 3,
-		.args_types_code = 1,
-		.args_types = {T_REG | T_DIR | T_IND, T_REG | T_DIR | T_IND, T_REG},
+		.is_type_args = 1,
+		.type_args = {T_REG | T_DIR | T_IND, T_REG | T_DIR | T_IND, T_REG},
 		.modify_carry = 1,
 		.t_dir_size = 4,
 		.cycles = 6,
@@ -103,8 +109,8 @@ static t_op		g_op[16] = {
 		.name = "or",
 		.code = 0x07,
 		.args_num = 3,
-		.args_types_code = 1,
-		.args_types = {T_REG | T_DIR | T_IND, T_REG | T_DIR | T_IND, T_REG},
+		.is_type_args = 1,
+		.type_args = {T_REG | T_DIR | T_IND, T_REG | T_DIR | T_IND, T_REG},
 		.modify_carry = 1,
 		.t_dir_size = 4,
 		.cycles = 6,
@@ -114,8 +120,8 @@ static t_op		g_op[16] = {
 		.name = "xor",
 		.code = 0x08,
 		.args_num = 3,
-		.args_types_code = 1,
-		.args_types = {T_REG | T_DIR | T_IND, T_REG | T_DIR | T_IND, T_REG},
+		.is_type_args = 1,
+		.type_args = {T_REG | T_DIR | T_IND, T_REG | T_DIR | T_IND, T_REG},
 		.modify_carry = 1,
 		.t_dir_size = 4,
 		.cycles = 6,
@@ -125,8 +131,8 @@ static t_op		g_op[16] = {
 		.name = "zjmp",
 		.code = 0x09,
 		.args_num = 1,
-		.args_types_code = 0,
-		.args_types = {T_DIR, 0, 0},
+		.is_type_args = 0,
+		.type_args = {T_DIR, 0, 0},
 		.modify_carry = 0,
 		.t_dir_size = 2,
 		.cycles = 20,
@@ -136,8 +142,8 @@ static t_op		g_op[16] = {
 		.name = "ldi",
 		.code = 0x0A,
 		.args_num = 3,
-		.args_types_code = 1,
-		.args_types = {T_REG | T_DIR | T_IND, T_REG | T_DIR, T_REG},
+		.is_type_args = 1,
+		.type_args = {T_REG | T_DIR | T_IND, T_REG | T_DIR, T_REG},
 		.modify_carry = 0,
 		.t_dir_size = 2,
 		.cycles = 25,
@@ -147,8 +153,8 @@ static t_op		g_op[16] = {
 		.name = "sti",
 		.code = 0x0B,
 		.args_num = 3,
-		.args_types_code = 1,
-		.args_types = {T_REG, T_REG | T_DIR | T_IND, T_REG | T_DIR},
+		.is_type_args = 1,
+		.type_args = {T_REG, T_REG | T_DIR | T_IND, T_REG | T_DIR},
 		.modify_carry = 0,
 		.t_dir_size = 2,
 		.cycles = 25,
@@ -158,8 +164,8 @@ static t_op		g_op[16] = {
 		.name = "fork",
 		.code = 0x0C,
 		.args_num = 1,
-		.args_types_code = 0,
-		.args_types = {T_DIR, 0, 0},
+		.is_type_args = 0,
+		.type_args = {T_DIR, 0, 0},
 		.modify_carry = 0,
 		.t_dir_size = 2,
 		.cycles = 800,
@@ -169,8 +175,8 @@ static t_op		g_op[16] = {
 		.name = "lld",
 		.code = 0x0D,
 		.args_num = 2,
-		.args_types_code = 1,
-		.args_types = {T_DIR | T_IND, T_REG, 0},
+		.is_type_args = 1,
+		.type_args = {T_DIR | T_IND, T_REG, 0},
 		.modify_carry = 1,
 		.t_dir_size = 4,
 		.cycles = 10,
@@ -180,8 +186,8 @@ static t_op		g_op[16] = {
 		.name = "lldi",
 		.code = 0x0E,
 		.args_num = 3,
-		.args_types_code = 1,
-		.args_types = {T_REG | T_DIR | T_IND, T_REG | T_DIR, T_REG},
+		.is_type_args = 1,
+		.type_args = {T_REG | T_DIR | T_IND, T_REG | T_DIR, T_REG},
 		.modify_carry = 1,
 		.t_dir_size = 2,
 		.cycles = 50,
@@ -191,8 +197,8 @@ static t_op		g_op[16] = {
 		.name = "lfork",
 		.code = 0x0F,
 		.args_num = 1,
-		.args_types_code = 0,
-		.args_types = {T_DIR, 0, 0},
+		.is_type_args = 0,
+		.type_args = {T_DIR, 0, 0},
 		.modify_carry = 0,
 		.t_dir_size = 2,
 		.cycles = 1000,
@@ -202,8 +208,8 @@ static t_op		g_op[16] = {
 		.name = "aff",
 		.code = 0x10,
 		.args_num = 1,
-		.args_types_code = 1,
-		.args_types = {T_REG, 0, 0},
+		.is_type_args = 1,
+		.type_args = {T_REG, 0, 0},
 		.modify_carry = 0,
 		.t_dir_size = 4,
 		.cycles = 2,
