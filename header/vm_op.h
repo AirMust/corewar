@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 21:24:44 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/19 03:20:45 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/19 16:02:02 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define OP_N_FUN	16
 
 void	op_live(t_vm *vm, t_process *proc);
+void	op_ld(t_vm *vm, t_process *proc);
 
 typedef struct	s_op
 {
@@ -61,7 +62,7 @@ static t_op		g_op[16] = {
 		.modify_carry = 1,
 		.t_dir_size = 4,
 		.cycles = 5,
-		// .func = &op_ld
+		.func = &op_ld
 	},
 	{
 		.name = "st",

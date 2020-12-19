@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 00:42:51 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/19 04:52:15 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/19 16:03:10 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void vm_run_op(t_vm *vm, t_process *proc)
 			if (wm_valid_args(vm, proc, op))
 			{
 				// ft_printf("ID: %d, FUN: %s, POS: %d, %d %d\n", proc->id, op->name, PROC_POS, proc->reg[0], proc->reg[1]);
-				if (op->code == 1)
+				if (op->code == 1 || op->code == 2)
 					op->func(vm, proc);
 			}
 			else

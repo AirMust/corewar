@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   op_live.c                                          :+:      :+:    :+:   */
+/*   op_st.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 02:17:37 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/19 15:55:40 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/19 16:06:03 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../header/vm.h"
 
-void	op_live(t_vm *vm, t_process *proc)
+void	op_ld(t_vm *vm, t_process *proc)
 {
-	int			player_id;
-	t_player	*player;
+	int			value;
+	int			reg_id;
 
-	player = NULL;
-	proc->step += OP_CODE_LEN;
-	player_id = get_op_args(vm, proc, 1, 0);
-	proc->cycle_live = vm->n_loop;
-	if (player_id < 0 && player_id >= -(vm->players_num))
-	{
-		player = &vm->players[-player_id - 1];
-		player->loop_live = vm->n_loop;
-	}
-	// ft_printf("Live: %d %d\n", player_id, PROC_STEP);
-
-
+	PROC_STEP += OP_CODE_LEN + ARGS_CODE_LEN;
+	value = get_op_args(vm, proc, 1, 1);
+	proc->carry = (value == 0 ? 1 : 0);
+	reg_id = get_byte_int(vm, PROC_POS + PROC_STEP, 1);
+	ft_printf("ld: %d %d %d %d\n", value, reg_id, PROC_POS, PROC_STEP);
+	proc->reg[reg_id - 1] = value;
+	PROC_STEP += REG_LEN;
 }
