@@ -6,6 +6,8 @@
 		"vm_struct.h": "c",
 		"op_fun.h": "c",
 		"op.h": "c",
-		"__locale": "c"
+		"__locale": "c",
+		"fcntl.h": "c",
+		"vm_op_fun.h": "c"
 	}
 }

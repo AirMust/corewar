@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 17:18:40 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/18 19:18:54 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/19 04:57:31 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 
 # define PROC_POS	proc->curr_position
 # define PROC_STEP	proc->step
+# define PROC_REG	proc->reg
+# define PROC_TA	proc->type_args
 /*
 ** list of players
 */
@@ -39,6 +41,7 @@ typedef struct			s_player
 	char				name[PROG_NAME_LENGTH + 1];		// name of the player form header
 	char				comment[COMMENT_LENGTH + 1];	// player comment
 	void				*exec_code;
+	int					loop_live;
 }						t_player;
 
 /*
@@ -56,7 +59,7 @@ typedef struct			s_process
 	int					curr_position;				// Текущая позиция на арене
 	size_t				step;						// Через сколько байтов нужно перепрыгнуть
 	int					reg[REG_NUMBER];			//
-	int					type_args[3];				// Текущие аргументы конструкции op
+	uint32_t			type_args[3];				// Текущие аргументы конструкции op
 	struct s_process	*next;						// Следущая каретка
 }						t_process;
 /*

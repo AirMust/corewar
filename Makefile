@@ -6,7 +6,7 @@
 #    By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/25 14:04:51 by slynell           #+#    #+#              #
-#    Updated: 2020/12/19 02:54:48 by airat_must       ###   ########.fr        #
+#    Updated: 2020/12/19 04:59:02 by airat_must       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,14 +88,27 @@ SRC_VM_PARSE += vm_validation_help.c
 SOURCES_VM_PARSE = $(addprefix $(SDIR_VM_PARSE)/,$(SRC_VM_PARSE))
 OBJECTS_VM_PARSE = $(addprefix $(ODIR_VM_PARSE)/,$(SRC_VM_PARSE:.c=.o))
 
+
+# /*
+# ** ====================== SOURCE VM_OP ==========================
+# */
+SDIR_VM_OP = src/vm/vm_op
+ODIR_VM_OP = obj/vm/vm_op
+
+SRC_VM_OP = op_live.c
+
+
+SOURCES_VM_OP = $(addprefix $(SDIR_VM_OP)/,$(SRC_VM_OP))
+OBJECTS_VM_OP = $(addprefix $(ODIR_VM_OP)/,$(SRC_VM_OP:.c=.o))
+
 .PHONY: clean fclean all re $(LIBFT)
 
 all : $(NAME) Makefile
 	@2> tmp.log
 	@@echo "Project $(NAME) build successfully \c" >> tmp.log
 
-$(NAME) : $(LIBFT) $(OBJECTS) $(OBJECTS_VM) $(OBJECTS_VM_INIT) $(OBJECTS_VM_PARSE) $(INCLUDES)
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJECTS) $(OBJECTS_VM) $(OBJECTS_VM_INIT) $(OBJECTS_VM_PARSE) -I $(IDIR) $(LIBFT)
+$(NAME) : $(LIBFT) $(OBJECTS) $(OBJECTS_VM) $(OBJECTS_VM_INIT) $(OBJECTS_VM_PARSE) $(OBJECTS_VM_OP) $(INCLUDES)
+	@$(CC) $(FLAGS) -o $(NAME) $(OBJECTS) $(OBJECTS_VM) $(OBJECTS_VM_INIT) $(OBJECTS_VM_PARSE) $(OBJECTS_VM_OP)  -I $(IDIR) $(LIBFT)
 	@echo "\nProject $(NAME) build successfully \033[32m[OK]\033[0m\n"
 
 # /*
@@ -103,6 +116,18 @@ $(NAME) : $(LIBFT) $(OBJECTS) $(OBJECTS_VM) $(OBJECTS_VM_INIT) $(OBJECTS_VM_PARS
 # */
 $(LIBFT) : Makefile
 	@make -C $(LDIR) 2> tmp.log
+
+# /*
+# ** =================== MAKE VM_OP ========================
+# */
+$(ODIR_VM_OP)/%.o : $(SDIR_VM_OP)/%.c $(INCLUDES)
+	@if [[ $< == src/vm/vm_op/op_live.c ]]; then \
+		echo "\n > Make \033[33mvm op\033[0mfunctions:\c"; \
+	fi
+	@mkdir -p $(ODIR_VM_OP) 2> tmp.log
+	@$(CC) $(FLAGS) -I $(IDIR) -c $< -o $@ 2> tmp.log
+	@echo "\033[32m.\033[0m\c"
+
 
 # /*
 # ** =================== MAKE VM_PARSE ========================
@@ -114,7 +139,6 @@ $(ODIR_VM_PARSE)/%.o : $(SDIR_VM_PARSE)/%.c $(INCLUDES)
 	@mkdir -p $(ODIR_VM_PARSE) 2> tmp.log
 	@$(CC) $(FLAGS) -I $(IDIR) -c $< -o $@ 2> tmp.log
 	@echo "\033[32m.\033[0m\c"
-
 
 # /*
 # ** =================== MAKE VM_INIT ========================

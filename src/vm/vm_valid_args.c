@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 15:42:44 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/18 19:45:35 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/19 04:35:56 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int wm_valid_args(t_vm *vm, t_process *proc, t_op *op)
 	{
 		if (proc->type_args[i] == T_REG && !valid_reg_args(vm, proc, step))
 			return (0);
-		step += (proc->type_args[i] == T_REG ? REG_LEN : proc->type_args[i] == T_DIR ? op->t_dir_size : IND_SIZE);
+		step += get_step(proc->type_args[i], op);
 	}
 	PROC_STEP = step;
 	return (1);

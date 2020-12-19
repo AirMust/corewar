@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/12/18 20:12:05 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/19 04:32:55 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "../libft/header/libft.h"
 #include "op.h"
 #include "vm_struct.h"
-#include "vm_op_fun.h"
+#include "vm_op.h"
 
 #include <fcntl.h>
 
@@ -57,7 +57,7 @@ void vm_prep(t_vm *vm);
 void prep_presentation(t_vm *vm);
 void sort_players(t_vm *vm);
 
-unsigned int get_byte_int(t_vm *vm, int position, int size_reg);
+int get_byte_int(t_vm *vm, int position, int size_reg);
 void vm_war(t_vm *vm);
 void get_op_code(t_vm *vm, t_process *proc);
 void vm_print_proc(t_process *proc);
@@ -66,6 +66,9 @@ void get_op_type_agrs(t_vm *vm, t_process *proc, t_op *op);
 int wm_valid_args(t_vm *vm, t_process *proc, t_op *op);
 int gap_op_args(t_process *proc, t_op *op);
 void proc_step(t_process *proc);
+int		get_op_args(t_vm *vm, t_process *proc, int index_arg, int is_mod);
+int		get_step(int type_arg, t_op *op);
+
 /*
 ** Error management
 */

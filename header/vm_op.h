@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   op_fun.h                                           :+:      :+:    :+:   */
+/*   vm_op.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 21:24:44 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/18 16:45:11 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/19 03:20:45 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 
 # define OP_N_FUN	16
 
+void	op_live(t_vm *vm, t_process *proc);
+
 typedef struct	s_op
 {
 	char		*name;
@@ -32,7 +34,7 @@ typedef struct	s_op
 	uint8_t		modify_carry;
 	uint8_t		t_dir_size;
 	uint32_t	cycles;
-	// void		(*func)(t_vm *, t_cursor *);
+	void		(*func)(t_vm *, t_process *);
 
 }				t_op;
 
@@ -48,7 +50,7 @@ static t_op		g_op[16] = {
 		.modify_carry = 0,
 		.t_dir_size = 4,
 		.cycles = 10,
-		// .func = &op_live
+		.func = &op_live
 	},
 	{
 		.name = "ld",
