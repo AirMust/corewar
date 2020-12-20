@@ -6,7 +6,7 @@
 #    By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/25 14:04:51 by slynell           #+#    #+#              #
-#    Updated: 2020/12/20 01:47:56 by airat_must       ###   ########.fr        #
+#    Updated: 2020/12/20 03:53:25 by airat_must       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,6 +107,11 @@ SRC_VM_OP += op_zjmp.c
 SRC_VM_OP += op_ldi.c
 SRC_VM_OP += op_sti.c
 SRC_VM_OP += op_fork.c
+SRC_VM_OP += op_lld.c
+SRC_VM_OP += op_lldi.c
+SRC_VM_OP += op_lfork.c
+SRC_VM_OP += op_aff.c
+
 
 
 

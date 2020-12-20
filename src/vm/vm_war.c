@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 00:42:51 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/20 03:11:15 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 03:52:59 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ void vm_run_op(t_vm *vm, t_process *proc)
 			if (wm_valid_args(vm, proc, op))
 			{
 				ft_printf("VM %zd, ID: %d\tID_player: %d\tFUN: %s\tPOS: %d, %d %d\n", vm->n_loop, proc->id, proc->id_player, op->name, PROC_POS, proc->reg[0], proc->reg[1]);
-				if (op->code < 13)
-					op->func(vm, proc);
+				op->func(vm, proc);
 			}
 			else
 				proc->step += gap_op_args(proc, op);
@@ -42,7 +41,7 @@ void vm_run_op(t_vm *vm, t_process *proc)
 			proc->step = OP_CODE_LEN;
 		proc_step(proc);
 	}
-		// ft_printf("-> %d, VM: %d, PROC: %d\n", PROC_POS, vm->n_loop, proc->cycle_op);
+	// ft_printf("-> %d, VM: %d, PROC: %d\n", PROC_POS, vm->n_loop, proc->cycle_op);
 }
 // vm_print_proc(proc);
 // }
@@ -71,20 +70,20 @@ void vm_war(t_vm *vm)
 	}
 	// t_process *temp;
 	// temp = vm->processes;
-// 	while(temp)
-// 	{
-// 		ft_printf("\n%2d -> %2d", temp->id, temp->id_player);
-// 		i = -1;
-// 		while(++i < 3)
-// 			ft_printf("%9d", temp->type_args[i]);
-// 		temp = temp->next;
-// 	}
-// 	ft_printf("\n");
-// 	i = -1;
-// 	while(++i < MEM_SIZE)
-// 	{
-// 		if(i % 30 == 0)
-// 			ft_printf("\n%d:\t", i / 30);
-// 		ft_printf("%3d ", vm->stage[i]);
-// 	}
+	// 	while(temp)
+	// 	{
+	// 		ft_printf("\n%2d -> %2d", temp->id, temp->id_player);
+	// 		i = -1;
+	// 		while(++i < 3)
+	// 			ft_printf("%9d", temp->type_args[i]);
+	// 		temp = temp->next;
+	// 	}
+	// 	ft_printf("\n");
+	// 	i = -1;
+	// 	while(++i < MEM_SIZE)
+	// 	{
+	// 		if(i % 30 == 0)
+	// 			ft_printf("\n%d:\t", i / 30);
+	// 		ft_printf("%3d ", vm->stage[i]);
+	// 	}
 }

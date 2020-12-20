@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 17:18:40 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/20 01:38:34 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 03:52:41 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef	struct	s_vm
 	int			proc_num;		//Количество кареток
 	int			n_loop;			//Количество циклов
 	int			n_loop_check;	//Количество циклов до проверки
+	int			is_aff;
 
 }				t_vm;
 

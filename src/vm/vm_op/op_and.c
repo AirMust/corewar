@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 02:17:37 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/19 17:00:11 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 03:31:43 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	op_and(t_vm *vm, t_process *proc)
 	value_2 = get_op_args(vm, proc, 2, 1);
 	value = value_1 & value_2;
 	proc->carry = (value == 0 ? 1 : 0);
-	reg = get_byte_int(vm, PROC_POS + PROC_STEP, 1);
+	reg = get_byte_int(vm, PROC_POS + PROC_STEP, REG_LEN);
 	PROC_STEP += REG_LEN;
 	PROC_REG[reg - 1] = value;
 	// ft_printf("add: %d %d %d %d %d %d %d\n", value, reg_1, reg_2, reg_3, PROC_REG[reg_3 - 1], PROC_POS, PROC_STEP);
