@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 23:46:24 by antondob          #+#    #+#             */
-/*   Updated: 2020/12/20 04:09:22 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 04:18:02 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,18 @@ int				get_byte_int(t_vm *vm, int position, int size_reg)
 	}
 	result = (sign == 1) ? ~(result) : result;
 	return (result);
+}
+
+void			put_int_byte(t_vm *vm, int32_t addr, int32_t value,
+						int32_t size)
+{
+	int8_t		i;
+
+	i = 0;
+	while (size)
+	{
+		vm->stage[mod_position(addr + size - 1)] = (uint8_t)((value >> i) & 0xFF);
+		i += 8;
+		size--;
+	}
 }

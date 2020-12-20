@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/12/20 03:27:20 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 04:15:56 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int gap_op_args(t_process *proc, t_op *op);
 void proc_step(t_process *proc);
 int		get_op_args(t_vm *vm, t_process *proc, int index_arg, int is_mod);
 int		get_step(int type_arg, t_op *op);
-void		int32_to_bytecode(t_vm *vm, int32_t addr, int32_t value,
+void		put_int_byte(t_vm *vm, int32_t addr, int32_t value,
 						int32_t size);
 /*
 ** Error management
