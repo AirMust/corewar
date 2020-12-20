@@ -6,18 +6,18 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 02:17:37 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/20 03:58:13 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 04:07:37 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../header/vm.h"
 
-void	op_xor(t_vm *vm, t_process *proc)
+void		op_xor(t_vm *vm, t_process *proc)
 {
-	int			value_1;
-	int			value_2;
-	int			value;
-	int			reg;
+	int		value_1;
+	int		value_2;
+	int		value;
+	int		reg;
 
 	PROC_STEP += ARGS_CODE_LEN;
 	value_1 = get_op_args(vm, proc, 1, 1);

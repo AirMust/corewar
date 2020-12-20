@@ -6,13 +6,13 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/20 03:49:18 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/20 03:57:11 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 04:05:37 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../header/vm.h"
 
-void	op_aff(t_vm *vm, t_process *proc)
+void		op_aff(t_vm *vm, t_process *proc)
 {
 	int		reg;
 	int		value;

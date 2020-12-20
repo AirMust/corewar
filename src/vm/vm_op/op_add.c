@@ -6,18 +6,18 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 02:17:37 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/20 03:57:06 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 04:08:40 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../header/vm.h"
 
-void	op_add(t_vm *vm, t_process *proc)
+void		op_add(t_vm *vm, t_process *proc)
 {
-	int			value;
-	int			reg_1;
-	int			reg_2;
-	int			reg_3;
+	int		value;
+	int		reg_1;
+	int		reg_2;
+	int		reg_3;
 
 	PROC_STEP += ARGS_CODE_LEN;
 	reg_1 = get_byte_int(vm, PROC_POS + PROC_STEP, REG_LEN);
@@ -29,5 +29,4 @@ void	op_add(t_vm *vm, t_process *proc)
 	value = PROC_REG[reg_1 - 1] + PROC_REG[reg_2 - 1];
 	proc->carry = (value == 0 ? 1 : 0);
 	PROC_REG[reg_3 - 1] = value;
-	// ft_printf("add: %d %d %d %d %d %d %d\n", value, reg_1, reg_2, reg_3, PROC_REG[reg_3 - 1], PROC_POS, PROC_STEP);
 }

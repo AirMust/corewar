@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 00:42:51 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/20 03:59:32 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 04:05:18 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,9 @@ void vm_run_op(t_vm *vm, t_process *proc)
 			op = &g_op[proc->id_op - 1];
 		if (op)
 		{
-
 			get_op_type_agrs(vm, proc, op);
 			if (wm_valid_args(vm, proc, op))
 			{
-				ft_printf("VM %zd, ID: %d\tID_player: %d\tFUN: %s\tPOS: %d, %d %d\n", vm->n_loop, proc->id, proc->id_player, op->name, PROC_POS, proc->reg[0], proc->reg[1]);
 				PROC_STEP += OP_CODE_LEN;
 				op->func(vm, proc);
 			}
@@ -42,7 +40,6 @@ void vm_run_op(t_vm *vm, t_process *proc)
 			proc->step = OP_CODE_LEN;
 		proc_step(proc);
 	}
-	// ft_printf("-> %d, VM: %d, PROC: %d\n", PROC_POS, vm->n_loop, proc->cycle_op);
 }
 // vm_print_proc(proc);
 // }

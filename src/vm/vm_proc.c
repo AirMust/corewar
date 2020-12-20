@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 19:15:45 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/20 02:13:44 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 04:08:47 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,3 +62,4 @@ t_process *proc_copy(t_process *proc, int addr)
 	new->cycle_live = proc->cycle_live;
 	return (new);
 }
+
