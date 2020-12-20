@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/12/20 04:15:56 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 05:17:43 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 #define MASK_A		0b00000011 // Aka 0x3
 #define MASK_SIGIN	0b10000000
 
-static int g_type_args[3] = {
+static unsigned char g_type_args[3] = {
 	T_REG,
 	T_DIR,
 	T_IND};
