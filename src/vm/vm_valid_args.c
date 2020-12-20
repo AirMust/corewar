@@ -6,15 +6,15 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 15:42:44 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/20 04:04:13 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 04:11:43 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/vm.h"
 
-int valid_type_args(t_process *proc, t_op *op)
+int			valid_type_args(t_process *proc, t_op *op)
 {
-	int i;
+	int		i;
 
 	i = -1;
 	while (++i < op->args_num)
@@ -23,18 +23,18 @@ int valid_type_args(t_process *proc, t_op *op)
 	return (1);
 }
 
-int valid_reg_args(t_vm *vm, t_process *proc, int step)
+int			valid_reg_args(t_vm *vm, t_process *proc, int step)
 {
-	int value;
+	int		value;
 
 	value = get_byte_int(vm, PROC_POS + step, T_REG);
 	return (value > 0 && value <= REG_NUMBER);
 }
 
-int wm_valid_args(t_vm *vm, t_process *proc, t_op *op)
+int			wm_valid_args(t_vm *vm, t_process *proc, t_op *op)
 {
-	int step;
-	int i;
+	int		step;
+	int		i;
 
 	if (!valid_type_args(proc, op))
 		return (0);

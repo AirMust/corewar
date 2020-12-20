@@ -6,13 +6,13 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 19:15:45 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/20 04:08:47 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 04:11:15 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/vm.h"
 
-void proc_step(t_process *proc)
+void			proc_step(t_process *proc)
 {
 	PROC_POS = mod_position(PROC_POS + PROC_STEP);
 	PROC_STEP = 0;
@@ -22,10 +22,10 @@ void proc_step(t_process *proc)
 	PROC_TA[2] = 0;
 }
 
-t_process *proc_init(int id_player, int addr)
+t_process		*proc_init(int id_player, int addr)
 {
-	t_process *new;
-	static int proc_counter;
+	t_process	*new;
+	static int	proc_counter;
 
 	if (!(new = ft_memalloc(sizeof(t_process))))
 		vm_error(3);
@@ -41,17 +41,17 @@ t_process *proc_init(int id_player, int addr)
 	return (new);
 }
 
-void proc_insert(t_process **l_proc, t_process *proc)
+void			proc_insert(t_process **l_proc, t_process *proc)
 {
 	if (proc)
 		proc->next = *l_proc;
 	*l_proc = proc;
 }
 
-t_process *proc_copy(t_process *proc, int addr)
+t_process		*proc_copy(t_process *proc, int addr)
 {
-	t_process *new;
-	int i;
+	t_process	*new;
+	int			i;
 
 	i = -1;
 	addr = mod_position(PROC_POS + addr);

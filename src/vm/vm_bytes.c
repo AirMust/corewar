@@ -6,25 +6,25 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 23:46:24 by antondob          #+#    #+#             */
-/*   Updated: 2020/12/20 03:22:30 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 04:09:22 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/vm.h"
 
-unsigned int reverse_bytes(unsigned int num)
+unsigned int	reverse_bytes(unsigned int num)
 {
 	num = (num & 0xFFFF0000) >> 16 | (num & 0x0000FFFF) << 16;
 	num = (num & 0xFF00FF00) >> 8 | (num & 0x00FF00FF) << 8;
 	return (num);
 }
 
-int get_byte_int(t_vm *vm, int position, int size_reg)
+int				get_byte_int(t_vm *vm, int position, int size_reg)
 {
 	int32_t		result;
 	int32_t		current;
-	char			sign;
-	char			i;
+	char		sign;
+	char		i;
 
 	result = 0;
 	i = 0;
@@ -36,5 +36,5 @@ int get_byte_int(t_vm *vm, int position, int size_reg)
 		result += current << (i++ * 8);
 	}
 	result = (sign == 1) ? ~(result) : result;
-	return result;
+	return (result);
 }

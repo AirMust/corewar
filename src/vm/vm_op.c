@@ -6,15 +6,15 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 16:37:02 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/20 04:03:24 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 04:10:20 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header/vm.h"
 
-void get_op_code(t_vm *vm, t_process *proc)
+void		get_op_code(t_vm *vm, t_process *proc)
 {
-	int code_id;
+	int		code_id;
 
 	code_id = get_byte_int(vm, PROC_POS, OP_CODE_LEN);
 	proc->id_op = code_id;
@@ -22,9 +22,10 @@ void get_op_code(t_vm *vm, t_process *proc)
 		proc->cycle_op = g_op[code_id - 1].cycles;
 }
 
-void get_op_type_agrs(t_vm *vm, t_process *proc, t_op *op)
+void		get_op_type_agrs(t_vm *vm, t_process *proc, t_op *op)
 {
-	int type_args;
+	int		type_args;
+
 	if (op->is_type_args)
 	{
 		type_args = get_byte_int(vm, PROC_POS + OP_CODE_LEN, ARGS_CODE_LEN);
@@ -34,30 +35,28 @@ void get_op_type_agrs(t_vm *vm, t_process *proc, t_op *op)
 			proc->type_args[1] = g_type_args[((type_args & MASK_G) >> 4) - 1];
 		if (op->args_num >= 3)
 			proc->type_args[2] = g_type_args[((type_args & MASK_B) >> 2) - 1];
-		return;
+		return ;
 	}
 	proc->type_args[0] = op->type_args[0];
 }
 
-int gap_op_args(t_process *proc, t_op *op)
+int			gap_op_args(t_process *proc, t_op *op)
 {
-	int step;
-	int i;
+	int		step;
+	int		i;
 
 	i = -1;
 	step = OP_CODE_LEN + (op->is_type_args ? ARGS_CODE_LEN : 0);
 	while (++i < op->args_num)
-	{
 		step += get_step(proc->type_args[i], op);
-	}
 	return (step);
 }
 
-int get_op_args(t_vm *vm, t_process *proc, int index_arg, int is_mod)
+int			get_op_args(t_vm *vm, t_process *proc, int index_arg, int is_mod)
 {
-	t_op *op;
-	int32_t value;
-	int addr;
+	t_op	*op;
+	int32_t	value;
+	int		addr;
 
 	op = &g_op[proc->id_op - 1];
 	value = 0;
