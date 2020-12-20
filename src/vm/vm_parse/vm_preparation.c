@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 16:22:53 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/12/19 02:40:14 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 02:05:20 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,24 +65,18 @@ static void prep_stage(t_vm *vm)
 
 static void prep_proc(t_vm *vm)
 {
-	t_process *new;
-	t_process *tmp;
 	int i;
+	int addr;
 
 	i = -1;
+	addr = 0;
 	while (++i < N_PLAYERS)
 	{
-		if (!(new = ft_memalloc(sizeof(t_process))))
-			vm_error(3);
-		new->id = i + 1;
-		new->curr_position =
-			MEM_SIZE / N_PLAYERS *(i);
-		new->reg[0] = -(i + 1);
-		tmp = PROC;
-		PROC = new;
-		new->next = tmp;
+		proc_insert(&(vm->processes), proc_init(i + 1, addr));
+		vm->proc_num++;
+		addr += MEM_SIZE / N_PLAYERS;
 	}
-	vm->proc_num = N_PLAYERS;
+	// vm->proc_num = N_PLAYERS;
 }
 
 void vm_prep(t_vm *vm)

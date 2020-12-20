@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 16:37:02 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/19 16:04:10 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/19 16:48:31 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,14 @@ int get_op_args(t_vm *vm, t_process *proc, int index_arg, int is_mod)
 	if (PROC_TA[index_arg - 1] & T_REG)
 		value = PROC_REG[get_byte_int(vm, PROC_POS + PROC_STEP, 1) - 1];
 	else if (PROC_TA[index_arg - 1] & T_DIR)
-	{
-		// ft_printf("%d", PROC_POS + PROC_STEP);
 		value = get_byte_int(vm, PROC_POS + PROC_STEP, op->t_dir_size);
-	}else if (PROC_TA[index_arg - 1] & T_IND)
+	else if (PROC_TA[index_arg - 1] & T_IND)
 	{
 		addr = get_byte_int(vm, PROC_POS + PROC_STEP, IND_SIZE);
 		addr = is_mod ? (addr % IDX_MOD) : addr;
 		value = get_byte_int(vm, PROC_POS + addr, DIR_SIZE);
 	}
-	PROC_STEP += (PROC_TA[index_arg - 1] == T_REG ? REG_LEN : PROC_TA[index_arg - 1] == T_DIR ? op->t_dir_size : IND_SIZE);
+	// ft_printf("\n--->%d\n", get_step(PROC_TA[index_arg - 1], op));
+	PROC_STEP += get_step(PROC_TA[index_arg - 1], op);
 	return (value);
 }

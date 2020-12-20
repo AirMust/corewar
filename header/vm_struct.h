@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 17:18:40 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/19 04:57:31 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 01:38:34 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct			s_process
 	int					curr_position;				// Текущая позиция на арене
 	size_t				step;						// Через сколько байтов нужно перепрыгнуть
 	int					reg[REG_NUMBER];			//
+	int					id_player;					//
 	uint32_t			type_args[3];				// Текущие аргументы конструкции op
 	struct s_process	*next;						// Следущая каретка
 }						t_process;
@@ -71,7 +72,7 @@ typedef struct			s_process
  */
 typedef	struct	s_vm
 {
-	void		*stage;			//арена
+	uint8_t		stage[MEM_SIZE];			//арена
 	t_player	*players;		//игроки
 	t_process	*processes;		//процессы
 	int			dump; 			//флаг dump. Если флаг установлен, то dump = числу идущему после флага. Дефолт = -1

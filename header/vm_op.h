@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 21:24:44 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/19 16:02:02 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 01:47:47 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,17 @@
 
 void	op_live(t_vm *vm, t_process *proc);
 void	op_ld(t_vm *vm, t_process *proc);
+void	op_st(t_vm *vm, t_process *proc);
+
+void	op_add(t_vm *vm, t_process *proc);
+void	op_sub(t_vm *vm, t_process *proc);
+void	op_and(t_vm *vm, t_process *proc);
+void	op_or(t_vm *vm, t_process *proc);
+void	op_xor(t_vm *vm, t_process *proc);
+void	op_zjmp(t_vm *vm, t_process *proc);
+void	op_ldi(t_vm *vm, t_process *proc);
+void	op_sti(t_vm *vm, t_process *proc);
+void	op_fork(t_vm *vm, t_process *proc);
 
 typedef struct	s_op
 {
@@ -73,7 +84,7 @@ static t_op		g_op[16] = {
 		.modify_carry = 0,
 		.t_dir_size = 4,
 		.cycles = 5,
-		// .func = &op_st
+		.func = &op_st
 	},
 	{
 		.name = "add",
@@ -84,7 +95,7 @@ static t_op		g_op[16] = {
 		.modify_carry = 1,
 		.t_dir_size = 4,
 		.cycles = 10,
-		// .func = &op_add
+		.func = &op_add
 	},
 	{
 		.name = "sub",
@@ -95,7 +106,7 @@ static t_op		g_op[16] = {
 		.modify_carry = 1,
 		.t_dir_size = 4,
 		.cycles = 10,
-		// .func = &op_sub
+		.func = &op_sub
 	},
 	{
 		.name = "and",
@@ -106,7 +117,7 @@ static t_op		g_op[16] = {
 		.modify_carry = 1,
 		.t_dir_size = 4,
 		.cycles = 6,
-		// .func = &op_and
+		.func = &op_and
 	},
 	{
 		.name = "or",
@@ -117,7 +128,7 @@ static t_op		g_op[16] = {
 		.modify_carry = 1,
 		.t_dir_size = 4,
 		.cycles = 6,
-		// .func = &op_or
+		.func = &op_or
 	},
 	{
 		.name = "xor",
@@ -128,7 +139,7 @@ static t_op		g_op[16] = {
 		.modify_carry = 1,
 		.t_dir_size = 4,
 		.cycles = 6,
-		// .func = &op_xor
+		.func = &op_xor
 	},
 	{
 		.name = "zjmp",
@@ -139,7 +150,7 @@ static t_op		g_op[16] = {
 		.modify_carry = 0,
 		.t_dir_size = 2,
 		.cycles = 20,
-		// .func = &op_zjmp
+		.func = &op_zjmp
 	},
 	{
 		.name = "ldi",
@@ -150,7 +161,7 @@ static t_op		g_op[16] = {
 		.modify_carry = 0,
 		.t_dir_size = 2,
 		.cycles = 25,
-		// .func = &op_ldi
+		.func = &op_ldi
 	},
 	{
 		.name = "sti",
@@ -161,7 +172,7 @@ static t_op		g_op[16] = {
 		.modify_carry = 0,
 		.t_dir_size = 2,
 		.cycles = 25,
-		// .func = &op_sti
+		.func = &op_sti
 	},
 	{
 		.name = "fork",
@@ -172,7 +183,7 @@ static t_op		g_op[16] = {
 		.modify_carry = 0,
 		.t_dir_size = 2,
 		.cycles = 800,
-		// .func = &op_fork
+		.func = &op_fork
 	},
 	{
 		.name = "lld",

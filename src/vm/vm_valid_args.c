@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 15:42:44 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/19 04:35:56 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 00:58:04 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int wm_valid_args(t_vm *vm, t_process *proc, t_op *op)
 			return (0);
 		step += get_step(proc->type_args[i], op);
 	}
-	PROC_STEP = step;
+	// ft_printf("ID: %d, FUN: %s, POS: %d, %d %d\n", proc->id, op->name, PROC_POS, proc->reg[0], proc->reg[1]);
+	// PROC_STEP = step;
 	return (1);
 }

@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_create.c                                        :+:      :+:    :+:   */
+/*   op_zjmp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/30 20:00:13 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/12/20 01:42:28 by airat_must       ###   ########.fr       */
+/*   Created: 2020/12/19 02:17:37 by airat_must        #+#    #+#             */
+/*   Updated: 2020/12/20 01:08:11 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../header/vm.h"
 
-t_vm	*vm_create(void)
+void	op_zjmp(t_vm *vm, t_process *proc)
 {
-	t_vm	*vm;
+	int			addr;
 
-	if (!(vm = ft_memalloc(sizeof(t_vm))))
-		vm_error(3);
-	if (!(PLAYER = ft_memalloc(sizeof(t_player) * MAX_PLAYERS)))
-		vm_error(3);
-	DUMP = -1;
-	return (vm);
+	PROC_STEP += OP_CODE_LEN;
+	addr = get_op_args(vm, proc, 1, 1);
+	if (proc->carry)
+	{
+		PROC_POS = mod_position(PROC_POS + (addr % IDX_MOD));
+		PROC_STEP = 0;
+	}
+	// ft_printf("add: %d %d %d %d %d %d %d\n", value, reg_1, reg_2, reg_3, PROC_REG[reg_3 - 1], PROC_POS, PROC_STEP);
 }

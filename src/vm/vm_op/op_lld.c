@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_create.c                                        :+:      :+:    :+:   */
+/*   op_lld.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/30 20:00:13 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/12/20 01:42:28 by airat_must       ###   ########.fr       */
+/*   Created: 2020/12/19 02:17:37 by airat_must        #+#    #+#             */
+/*   Updated: 2020/12/20 03:24:57 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../header/vm.h"
 
-t_vm	*vm_create(void)
+void	op_lld(t_vm *vm, t_process *proc)
 {
-	t_vm	*vm;
+	int			value;
+	int			reg_id;
 
-	if (!(vm = ft_memalloc(sizeof(t_vm))))
-		vm_error(3);
-	if (!(PLAYER = ft_memalloc(sizeof(t_player) * MAX_PLAYERS)))
-		vm_error(3);
-	DUMP = -1;
-	return (vm);
+	proc->step += (OP_CODE_LEN + ARGS_CODE_LEN);
+	value = get_op_args(vm, proc, 1, 0);
+	proc->carry = (value == 0 ? 1 : 0);
+	reg_id = get_byte_int(vm, PROC_POS + PROC_STEP, REG_LEN);
+	proc->reg[reg_id - 1] = value;
+	proc->step += REG_LEN;
 }

@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 23:46:24 by antondob          #+#    #+#             */
-/*   Updated: 2020/12/19 04:48:25 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 03:22:30 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,20 @@ unsigned int reverse_bytes(unsigned int num)
 
 int get_byte_int(t_vm *vm, int position, int size_reg)
 {
-	int i;
-	int x;
-	i = -1;
-	x = 0;
-	// ft_printf("Size:%d |", size_reg);
-	while (++i < size_reg)
+	int32_t		result;
+	int32_t		current;
+	char			sign;
+	char			i;
+
+	result = 0;
+	i = 0;
+	sign = ((STAGE[mod_position(position)] & MASK_SIGIN) == 0) ? 0 : 1;
+	while (size_reg)
 	{
-		// ft_printf("%d ", x);
-		x = x << 8 | *(unsigned char *)(STAGE + mod_position(position + i));
+		current = STAGE[mod_position(position + (size_reg--) - 1)];
+		current = sign == 1 ? (current ^ 0xFF) : current;
+		result += current << (i++ * 8);
 	}
-	return x;
+	result = (sign == 1) ? ~(result) : result;
+	return result;
 }

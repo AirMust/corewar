@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 20:00:53 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/12/19 02:40:51 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 01:02:57 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void vm_free(t_vm **vm)
 {
 	if (!*vm)
 		return ;
-	stage_free(&((*vm)->stage));
 	players_free(&((*vm)->players));
 	process_free(&((*vm)->processes));
 	free(*vm);

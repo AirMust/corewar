@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 15:12:38 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/19 04:32:43 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 01:00:00 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,17 @@ int		get_step(int type_arg, t_op *op)
 		return (IND_SIZE);
 	return (0);
 }
-// int		get_size_op(t_process *current, t_op *op)
-// {
-// 	int	i;
-// 	int	step;
 
-// 	i = -1;
-// 	step = OP_CODE_LEN + OP_IS_TYPE;
-// 	while(++i < g_op[OP_CODE - 1].args_num)
-// 	{
-// 		step += get_size_op_arg(current-> op)
-// 	}
-// }
+void		int32_to_bytecode(t_vm *vm, int32_t addr, int32_t value,
+						int32_t size)
+{
+	int8_t i;
+
+	i = 0;
+	while (size)
+	{
+		vm->stage[mod_position(addr + size - 1)] = (uint8_t)((value >> i) & 0xFF);
+		i += 8;
+		size--;
+	}
+}

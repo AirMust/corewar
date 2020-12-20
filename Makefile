@@ -6,7 +6,7 @@
 #    By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/25 14:04:51 by slynell           #+#    #+#              #
-#    Updated: 2020/12/19 16:02:18 by airat_must       ###   ########.fr        #
+#    Updated: 2020/12/20 01:47:56 by airat_must       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,6 +97,17 @@ ODIR_VM_OP = obj/vm/vm_op
 
 SRC_VM_OP = op_live.c
 SRC_VM_OP += op_ld.c
+SRC_VM_OP += op_st.c
+SRC_VM_OP += op_add.c
+SRC_VM_OP += op_sub.c
+SRC_VM_OP += op_and.c
+SRC_VM_OP += op_or.c
+SRC_VM_OP += op_xor.c
+SRC_VM_OP += op_zjmp.c
+SRC_VM_OP += op_ldi.c
+SRC_VM_OP += op_sti.c
+SRC_VM_OP += op_fork.c
+
 
 
 SOURCES_VM_OP = $(addprefix $(SDIR_VM_OP)/,$(SRC_VM_OP))
