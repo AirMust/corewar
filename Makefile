@@ -6,7 +6,7 @@
 #    By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/25 14:04:51 by slynell           #+#    #+#              #
-#    Updated: 2020/12/20 03:53:25 by airat_must       ###   ########.fr        #
+#    Updated: 2020/12/20 05:37:13 by airat_must       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ SRC_VM += vm_print.c
 SRC_VM += vm_op.c
 SRC_VM += vm_proc.c
 SRC_VM += vm_valid_args.c
-
+SRC_VM += vm_proc_dead.c
 SRC_VM += utils.c
 
 

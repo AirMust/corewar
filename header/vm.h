@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/07 05:17:48 by hbhuiyan          #+#    #+#             */
-/*   Updated: 2020/12/20 05:17:43 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 06:09:01 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@
 #define ARGS_CODE_LEN 1
 #define REG_LEN 1
 
-#define MASK_R		0b11000000 // Aka 0xCO
-#define MASK_G		0b00110000 // Aka 0x30
-#define MASK_B		0b00001100 // Aka 0xC
-#define MASK_A		0b00000011 // Aka 0x3
-#define MASK_SIGIN	0b10000000
+#define MASK_R 0b11000000 // Aka 0xCO
+#define MASK_G 0b00110000 // Aka 0x30
+#define MASK_B 0b00001100 // Aka 0xC
+#define MASK_A 0b00000011 // Aka 0x3
+#define MASK_SIGIN 0b10000000
 
 static unsigned char g_type_args[3] = {
 	T_REG,
@@ -58,9 +58,8 @@ void vm_prep(t_vm *vm);
 void prep_presentation(t_vm *vm);
 void sort_players(t_vm *vm);
 
-
-t_process	*proc_init(int id_player, int addr);
-void	proc_insert(t_process **l_proc, t_process *proc);
+t_process *proc_init(int id_player, int addr);
+void proc_insert(t_process **l_proc, t_process *proc);
 t_process *proc_copy(t_process *proc, int addr);
 int get_byte_int(t_vm *vm, int position, int size_reg);
 void vm_war(t_vm *vm);
@@ -71,10 +70,12 @@ void get_op_type_agrs(t_vm *vm, t_process *proc, t_op *op);
 int wm_valid_args(t_vm *vm, t_process *proc, t_op *op);
 int gap_op_args(t_process *proc, t_op *op);
 void proc_step(t_process *proc);
-int		get_op_args(t_vm *vm, t_process *proc, int index_arg, int is_mod);
-int		get_step(int type_arg, t_op *op);
-void		put_int_byte(t_vm *vm, int32_t addr, int32_t value,
-						int32_t size);
+int get_op_args(t_vm *vm, t_process *proc, int index_arg, int is_mod);
+int get_step(int type_arg, t_op *op);
+void put_int_byte(t_vm *vm, int32_t addr, int32_t value,
+				  int32_t size);
+void vm_proc_dead(t_vm *vm);
+void	print_last_alive(t_vm *vm);
 /*
 ** Error management
 */

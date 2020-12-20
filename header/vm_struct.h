@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 17:18:40 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/20 03:52:41 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 06:03:52 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,15 @@ typedef	struct	s_vm
 	t_process	*processes;		//процессы
 	int			dump; 			//флаг dump. Если флаг установлен, то dump = числу идущему после флага. Дефолт = -1
 	int			visualizer;
+	int			n_loop_dead;
+	int			count_check;
+	int			count_live;
 	int			players_num;	//количество игроков
 	int			proc_num;		//Количество кареток
 	int			n_loop;			//Количество циклов
 	int			n_loop_check;	//Количество циклов до проверки
 	int			is_aff;
+	int			survivor_id;
 
 }				t_vm;
 
