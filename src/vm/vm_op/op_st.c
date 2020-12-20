@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 02:17:37 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/20 03:28:31 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 03:57:58 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void op_st(t_vm *vm, t_process *proc)
 	int reg;
 	int addr;
 
-	PROC_STEP += (OP_CODE_LEN + ARGS_CODE_LEN);
+	PROC_STEP += ARGS_CODE_LEN;
 	reg = get_byte_int(vm, PROC_POS + PROC_STEP, REG_LEN);
 	PROC_STEP += REG_LEN;
 	value = PROC_REG[reg - 1];

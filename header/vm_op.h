@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 21:24:44 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/20 03:33:31 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 03:54:05 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	op_fork(t_vm *vm, t_process *proc);
 void	op_lld(t_vm *vm, t_process *proc);
 void	op_lldi(t_vm *vm, t_process *proc);
 void	op_lfork(t_vm *vm, t_process *proc);
-
+void	op_aff(t_vm *vm, t_process *proc);
 
 typedef struct	s_op
 {
@@ -231,7 +231,7 @@ static t_op		g_op[16] = {
 		.modify_carry = 0,
 		.t_dir_size = 4,
 		.cycles = 2,
-		// .func = &op_aff
+		.func = &op_aff
 	}
 };
 

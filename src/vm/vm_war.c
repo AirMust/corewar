@@ -6,7 +6,7 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 00:42:51 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/20 03:52:59 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 03:59:32 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void vm_run_op(t_vm *vm, t_process *proc)
 			if (wm_valid_args(vm, proc, op))
 			{
 				ft_printf("VM %zd, ID: %d\tID_player: %d\tFUN: %s\tPOS: %d, %d %d\n", vm->n_loop, proc->id, proc->id_player, op->name, PROC_POS, proc->reg[0], proc->reg[1]);
+				PROC_STEP += OP_CODE_LEN;
 				op->func(vm, proc);
 			}
 			else
@@ -68,16 +69,16 @@ void vm_war(t_vm *vm)
 	{
 		vm_loop_war(vm);
 	}
-	// t_process *temp;
-	// temp = vm->processes;
-	// 	while(temp)
-	// 	{
-	// 		ft_printf("\n%2d -> %2d", temp->id, temp->id_player);
-	// 		i = -1;
-	// 		while(++i < 3)
-	// 			ft_printf("%9d", temp->type_args[i]);
-	// 		temp = temp->next;
-	// 	}
+	t_process *temp;
+	temp = vm->processes;
+		while(temp)
+		{
+			ft_printf("%2d -> %2d -> %d\n", temp->id, temp->id_player, temp->cycle_live);
+			// i = -1;
+			// while(++i < 3)
+			// 	ft_printf("%9d", temp->type_args[i]);
+			temp = temp->next;
+		}
 	// 	ft_printf("\n");
 	// 	i = -1;
 	// 	while(++i < MEM_SIZE)
