@@ -6,11 +6,11 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 16:30:07 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/20 06:10:15 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 06:27:38 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/vm.h"
+#include "../../header/corewar.h"
 
 void	vm_print_proc(t_process *proc)
 {

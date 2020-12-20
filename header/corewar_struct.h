@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_struct.h                                        :+:      :+:    :+:   */
+/*   corewar_struct.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 17:18:40 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/20 06:03:52 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 06:32:47 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VM_STRUCT_H
-# define VM_STRUCT_H
+#ifndef COREWAR_STRUCT_H
+# define COREWAR_STRUCT_H
 
-#include "vm.h"
+#include "corewar.h"
 
 
 # define STAGE		vm->stage

@@ -6,11 +6,11 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 20:27:47 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/12/19 02:40:19 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 06:27:38 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../header/vm.h"
+#include "../../../header/corewar.h"
 
 static void	read_file(t_file *file, int fd)
 {
@@ -49,14 +49,11 @@ static void	valid_champ(t_vm *vm, int i)
 	curr = file.raw;
 	if (reverse_bytes(*(unsigned*)curr) ^ COREWAR_EXEC_MAGIC) 						// магическое число
 		vm_error(8);
-	ft_printf("%с\n", *(unsigned*)curr);
 	curr += 4;
 	ft_memcpy(PLAYER[i].name, curr, (size_t)PROG_NAME_LENGTH + 1);					// читаем имя
 	///*****test*****/	ft_printf("player name = %s\n", PLAYER[i].name);
-	ft_printf("%с\n", *(unsigned*)curr);
 	curr += PROG_NAME_LENGTH + 1 + 4 - (PROG_NAME_LENGTH + 1) % 4;
 	PLAYER[i].exec_size = reverse_bytes(*(unsigned*)curr);
-	ft_printf("%с\n", *(unsigned*)curr);
 
 	///*****test*****/	ft_printf("player size = %d\n", PLAYER[i].exec_size);		// размер исполняемого года в хедере
 	curr += 4;

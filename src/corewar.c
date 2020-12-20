@@ -6,11 +6,11 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/29 19:35:54 by antondob          #+#    #+#             */
-/*   Updated: 2020/12/20 06:14:55 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 06:27:38 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/vm.h"
+#include "../header/corewar.h"
 
 int main(int argc, char **argv)
 {

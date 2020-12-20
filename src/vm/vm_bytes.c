@@ -6,11 +6,11 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 23:46:24 by antondob          #+#    #+#             */
-/*   Updated: 2020/12/20 04:18:02 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 06:27:38 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/vm.h"
+#include "../../header/corewar.h"
 
 unsigned int	reverse_bytes(unsigned int num)
 {
@@ -39,16 +39,15 @@ int				get_byte_int(t_vm *vm, int position, int size_reg)
 	return (result);
 }
 
-void			put_int_byte(t_vm *vm, int32_t addr, int32_t value,
-						int32_t size)
+void			put_int_byte(t_vm *vm, int addr, int value, int size_reg)
 {
 	int8_t		i;
 
 	i = 0;
-	while (size)
+	while (size_reg)
 	{
-		vm->stage[mod_position(addr + size - 1)] = (uint8_t)((value >> i) & 0xFF);
+		STAGE[mod_position(addr + size_reg - 1)] = (uint8_t)((value >> i) & 0xFF);
 		i += 8;
-		size--;
+		size_reg--;
 	}
 }

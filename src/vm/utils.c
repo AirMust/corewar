@@ -6,11 +6,11 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/16 15:12:38 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/20 06:15:49 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 06:27:38 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/vm.h"
+#include "../../header/corewar.h"
 
 int		mod_position(int position)
 {

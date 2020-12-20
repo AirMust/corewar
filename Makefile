@@ -6,7 +6,7 @@
 #    By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/25 14:04:51 by slynell           #+#    #+#              #
-#    Updated: 2020/12/20 05:37:13 by airat_must       ###   ########.fr        #
+#    Updated: 2020/12/20 06:33:03 by airat_must       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ FLAGS = -Wall  -Werror -Wextra
 # /*
 # ** ========================== HEADER ==============================
 # */
-INCS = vm.h
+INCS = corewar.h
 IDIR = header
 LDIR = libft
 INCS += $(addprefix $(LDIR)/,$(addprefix $(IDIR)/,$(libft.h)))

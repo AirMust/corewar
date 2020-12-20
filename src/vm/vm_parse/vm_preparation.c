@@ -6,11 +6,11 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 16:22:53 by vcaterpi          #+#    #+#             */
-/*   Updated: 2020/12/20 02:05:20 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 06:27:38 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../header/vm.h"
+#include "../../../header/corewar.h"
 
 static void numerate_players(t_vm *vm, int *index)
 {
@@ -76,7 +76,6 @@ static void prep_proc(t_vm *vm)
 		vm->proc_num++;
 		addr += MEM_SIZE / N_PLAYERS;
 	}
-	// vm->proc_num = N_PLAYERS;
 }
 
 void vm_prep(t_vm *vm)

@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_op.h                                            :+:      :+:    :+:   */
+/*   corewar_op.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 21:24:44 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/20 03:54:05 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 06:32:42 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#ifndef OP_FUN_H
-# define OP_FUN_H
+#ifndef COREWAR_FUN_H
+# define COREWAR_FUN_H
 
-#include "vm.h"
+#include "corewar.h"
 
 # define OP_CODE	op->code
 # define OP_N_ARG	op->code

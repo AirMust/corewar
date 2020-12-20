@@ -6,7 +6,7 @@
 #    By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/14 11:23:23 by slynell           #+#    #+#              #
-#    Updated: 2020/12/14 23:32:55 by airat_must       ###   ########.fr        #
+#    Updated: 2020/12/20 06:24:08 by airat_must       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = libft.a
 
 CC = gcc
 
-FLAGS = -Wall -Wextra
+FLAGS = -Wall -Wextra -Werror
 
 SDIR = src
 
@@ -348,7 +348,7 @@ $(ODIR_PRINTF)/%.o : $(SDIR_PRINTF)/%.c $(HEADERS) Makefile
 		echo "\n > Make \033[33mprintf\033[0m\tfunctions:\c"; \
 	fi
 	@mkdir -p $(ODIR_PRINTF) 2> tmp.log
-	@$(CC) $(FLAGS) -I $(HDIR) -c $< -o $@ 2> tmp.log
+	@$(CC) -I $(HDIR) -c $< -o $@ 2> tmp.log
 	@echo "\033[32m.\033[0m\c"
 
 

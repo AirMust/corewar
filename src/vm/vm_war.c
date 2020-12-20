@@ -6,11 +6,11 @@
 /*   By: airat_must <https://github.com/AirMust>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 00:42:51 by airat_must        #+#    #+#             */
-/*   Updated: 2020/12/20 06:16:46 by airat_must       ###   ########.fr       */
+/*   Updated: 2020/12/20 06:27:38 by airat_must       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/vm.h"
+#include "../../header/corewar.h"
 
 void		vm_run_op(t_vm *vm, t_process *proc)
 {
@@ -34,10 +34,10 @@ void		vm_run_op(t_vm *vm, t_process *proc)
 				op->func(vm, proc);
 			}
 			else
-				proc->step += gap_op_args(proc, op);
+				PROC_STEP += gap_op_args(proc, op);
 		}
 		else
-			proc->step = OP_CODE_LEN;
+			PROC_STEP = OP_CODE_LEN;
 		proc_step(proc);
 	}
 }
